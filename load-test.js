@@ -9,9 +9,9 @@ const DELAY_BETWEEN_BATCHES_MS = 2000; // Wait 2 seconds between batches to read
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 async function runLoadTest() {
-  console.log(`\n🚀 Starting Infinite Load Test against: ${TARGET_URL}`);
-  console.log(`👥 Simulating ${CONCURRENT_REQUESTS} concurrent users per batch...`);
-  console.log(`🛑 Press Ctrl+C to stop the script.\n`);
+  console.log(`\nStarting Infinite Load Test against: ${TARGET_URL}`);
+  console.log(`Simulating ${CONCURRENT_REQUESTS} concurrent users per batch...`);
+  console.log(`Press Ctrl+C to stop the script.\n`);
 
   let iteration = 1;
 
@@ -50,19 +50,19 @@ async function runLoadTest() {
     // Collect unique error codes (e.g., 429, 500)
     const uniqueErrors = [...new Set(results.filter(r => !r.success).map(r => r.status))];
 
-    console.log('   📊 Batch Results:');
-    console.log(`   ⏱️  Duration: ${duration} seconds`);
-    console.log(`   ✅ Successful: ${successes}`);
-    console.log(`   ❌ Failed:     ${failures}`);
+    console.log('   Batch Results:');
+    console.log(`   Duration: ${duration} seconds`);
+    console.log(`   Successful: ${successes}`);
+    console.log(`   Failed:     ${failures}`);
 
     if (failures > 0) {
-      console.log(`   ⚠️  Error Codes: ${uniqueErrors.join(', ')}`);
+      console.log(`   Error Codes: ${uniqueErrors.join(', ')}`);
       
       if (uniqueErrors.includes(429)) {
-        console.log('   🔥 CONCLUSION: Rate Limit Hit (429)! Caching likely OFF/Expired.');
+        console.log('   CONCLUSION: Rate Limit Hit (429)! Caching likely OFF/Expired.');
       }
     } else {
-      console.log('   ✨ CONCLUSION: Perfect Run! Caching is ON.');
+      console.log('   CONCLUSION: Perfect Run! Caching is ON.');
     }
 
     iteration++;

@@ -55,13 +55,13 @@ export class AppService {
 
       if (Array.isArray(data)) {
         const txHashes = data.map((tx: any) => tx.txHash);
-        this.logger.log(`✅ Received ${txHashes.length} transactions. Hashes:`);
+        this.logger.log(`Received ${txHashes.length} transactions. Hashes:`);
         console.log(txHashes);
       }
 
       return data;
     } catch (error) {
-      this.logger.error('❌ Failed to fetch transactions');
+      this.logger.error('Failed to fetch transactions');
       throw new HttpException(
         error.response?.data || 'Error fetching transactions',
         error.response?.status || HttpStatus.INTERNAL_SERVER_ERROR,
